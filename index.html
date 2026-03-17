@@ -105,7 +105,7 @@
     .nav-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
     .logo {
       font-family: var(--serif);
@@ -224,7 +224,10 @@
       display: none;
       background: none; border: none; cursor: pointer;
       width: 32px; height: 24px;
-      position: relative;
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 1001;
     }
     .menu-toggle span {
@@ -281,12 +284,14 @@
       position: relative;
       z-index: 1;
       max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
     }
     /* ═══════════ HERO LOGO (recreated text + sparkles) ═══════════ */
     .hero-logo-wrap {
       position: relative;
       display: inline-block;
-      margin-bottom: 40px;
+      margin: 0 auto 40px;
       padding: 30px 60px 20px 80px;
       opacity: 0;
       animation: fadeUp 1s var(--ease) 0.1s forwards;
@@ -307,7 +312,7 @@
       font-family: 'Dancing Script', cursive;
       font-size: clamp(64px, 9vw, 100px);
       font-weight: 700;
-      color: var(--teal);
+      color: #3cc5b8;
       letter-spacing: -1px;
       position: relative;
     }
@@ -351,7 +356,7 @@
     }
     .lsp {
       position: absolute;
-      color: var(--teal);
+      color: #7eddd6;
       opacity: 0;
     }
     /* Large starburst — top left like the original */
@@ -450,7 +455,7 @@
       line-height: 1.7;
       color: var(--slate);
       max-width: 560px;
-      margin-bottom: 44px;
+      margin: 0 auto 44px;
       opacity: 0;
       animation: fadeUp 0.9s var(--ease) 0.6s forwards;
     }
@@ -461,6 +466,7 @@
     .hero-actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
       opacity: 0;
@@ -1025,13 +1031,10 @@
 </head>
 <body>
 
-  <!-- ═══════ NAV ═══════ -->
-  <nav>
+  <!-- ═══════ NAV (appears below hero logo) ═══════ -->
+  <nav id="mainNav">
     <div class="container">
       <div class="nav-inner">
-        <a href="#" class="logo">
-          <img src="https://sparklemafia.com/wp-content/uploads/2019/06/cropped-Print_logo_white_background_small-02-04-copy.png" alt="SparkleMafia" class="nav-logo-img">
-        </a>
         <ul class="nav-links" id="navLinks">
           <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
