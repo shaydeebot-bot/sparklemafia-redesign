@@ -11,7 +11,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ═══════════ RESET ═══════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -282,90 +282,126 @@
       z-index: 1;
       max-width: 780px;
     }
-    /* Hero logo with sparkles */
+    /* ═══════════ HERO LOGO (recreated text + sparkles) ═══════════ */
     .hero-logo-wrap {
       position: relative;
       display: inline-block;
-      margin-bottom: 36px;
+      margin-bottom: 40px;
+      padding: 30px 60px 20px 80px;
       opacity: 0;
       animation: fadeUp 1s var(--ease) 0.1s forwards;
     }
-    .hero-logo {
-      width: clamp(280px, 40vw, 420px);
-      height: auto;
-      display: block;
+    .logo-text {
       position: relative;
       z-index: 2;
-      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.06));
+      text-align: center;
     }
-    .hero-sparkles {
+    .logo-text-main {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 4px;
+      line-height: 1;
+    }
+    .logo-sparkle-word {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(64px, 9vw, 100px);
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: -1px;
+      position: relative;
+    }
+    .logo-mafia-word {
+      font-family: var(--sans);
+      font-size: clamp(50px, 7vw, 78px);
+      font-weight: 800;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    .logo-llc {
+      font-family: var(--sans);
+      font-size: clamp(11px, 1.5vw, 15px);
+      font-weight: 600;
+      color: var(--silver);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: relative;
+      top: clamp(-30px, -4vw, -45px);
+      margin-left: 4px;
+    }
+    .logo-subtitle {
+      font-family: var(--sans);
+      font-size: clamp(14px, 2.2vw, 22px);
+      font-weight: 600;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      margin-top: 2px;
+      text-align: center;
+    }
+
+    /* Sparkle stars scattered around the logo */
+    .logo-sparkles {
       position: absolute;
-      inset: -40px;
+      inset: -50px -40px -30px -60px;
       z-index: 1;
       pointer-events: none;
     }
-    .sparkle {
+    .lsp {
       position: absolute;
+      color: var(--teal);
       opacity: 0;
-      animation: sparkleAnim 3s ease-in-out infinite;
     }
-    .sparkle.s1 {
-      width: 28px; height: 28px;
-      top: -8%; right: 5%;
-      animation-delay: 0s;
-      animation-duration: 2.8s;
+    /* Large starburst — top left like the original */
+    .lsp.burst {
+      top: -18%; left: -2%;
+      width: clamp(50px, 8vw, 80px); height: clamp(50px, 8vw, 80px);
+      opacity: 0;
+      animation: burstAnim 5s ease-in-out infinite;
     }
-    .sparkle.s2 {
-      width: 18px; height: 18px;
-      top: 15%; right: -8%;
-      animation-delay: 0.6s;
-      animation-duration: 3.2s;
+    @keyframes burstAnim {
+      0% { opacity: 0.3; transform: scale(0.9) rotate(0deg); }
+      25% { opacity: 0.8; transform: scale(1.05) rotate(8deg); }
+      50% { opacity: 1; transform: scale(1.1) rotate(0deg); }
+      75% { opacity: 0.7; transform: scale(1) rotate(-5deg); }
+      100% { opacity: 0.3; transform: scale(0.9) rotate(0deg); }
     }
-    .sparkle.s3 {
-      width: 22px; height: 22px;
-      bottom: 10%; right: 2%;
-      animation-delay: 1.2s;
-      animation-duration: 2.5s;
+    /* Small sparkle animations */
+    .lsp.sm { animation: sparkSmall 3s ease-in-out infinite; }
+    .lsp.md { animation: sparkMed 4s ease-in-out infinite; }
+
+    @keyframes sparkSmall {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      20% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+      80% { opacity: 0.8; transform: scale(1.1); }
     }
-    .sparkle.s4 {
-      width: 16px; height: 16px;
-      top: -5%; left: 15%;
-      animation-delay: 0.4s;
-      animation-duration: 3.5s;
+    @keyframes sparkMed {
+      0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+      15% { opacity: 0.7; transform: scale(1) rotate(10deg); }
+      40% { opacity: 1; transform: scale(1.15) rotate(25deg); }
+      65% { opacity: 0.5; transform: scale(0.85) rotate(15deg); }
+      85% { opacity: 0.9; transform: scale(1.05) rotate(5deg); }
     }
-    .sparkle.s5 {
-      width: 24px; height: 24px;
-      bottom: 0%; left: -5%;
-      animation-delay: 1.8s;
-      animation-duration: 2.6s;
-    }
-    .sparkle.s6 {
-      width: 14px; height: 14px;
-      top: 40%; left: -10%;
-      animation-delay: 0.9s;
-      animation-duration: 3.0s;
-    }
-    .sparkle.s7 {
-      width: 20px; height: 20px;
-      bottom: -10%; left: 30%;
-      animation-delay: 2.1s;
-      animation-duration: 2.9s;
-    }
-    .sparkle.s8 {
-      width: 12px; height: 12px;
-      top: 5%; right: 25%;
-      animation-delay: 1.5s;
-      animation-duration: 3.4s;
-    }
-    @keyframes sparkleAnim {
-      0% { opacity: 0; transform: scale(0) rotate(0deg); }
-      15% { opacity: 1; transform: scale(1) rotate(20deg); }
-      30% { opacity: 1; transform: scale(1.1) rotate(40deg); }
-      50% { opacity: 0.6; transform: scale(0.8) rotate(90deg); }
-      70% { opacity: 1; transform: scale(1.05) rotate(140deg); }
-      85% { opacity: 0.8; transform: scale(0.9) rotate(180deg); }
-      100% { opacity: 0; transform: scale(0) rotate(200deg); }
-    }
+
+    /* Individual sparkle positions + timing */
+    .lsp.sp1  { top: 5%; left: 8%;    width: 14px; height: 14px; animation-delay: 0.3s; animation-duration: 3.4s; }
+    .lsp.sp2  { top: -10%; left: 30%;  width: 10px; height: 10px; animation-delay: 1.2s; animation-duration: 2.8s; }
+    .lsp.sp3  { top: -15%; right: 25%; width: 16px; height: 16px; animation-delay: 0.6s; animation-duration: 3.6s; }
+    .lsp.sp4  { top: 0%; right: 8%;    width: 12px; height: 12px; animation-delay: 2.0s; animation-duration: 3.1s; }
+    .lsp.sp5  { top: 25%; right: -4%;  width: 18px; height: 18px; animation-delay: 0.8s; animation-duration: 4.0s; }
+    .lsp.sp6  { top: 55%; right: 0%;   width: 10px; height: 10px; animation-delay: 1.5s; animation-duration: 2.6s; }
+    .lsp.sp7  { bottom: -5%; right: 15%; width: 14px; height: 14px; animation-delay: 0.4s; animation-duration: 3.3s; }
+    .lsp.sp8  { bottom: -10%; right: 35%; width: 8px; height: 8px; animation-delay: 2.2s; animation-duration: 2.9s; }
+    .lsp.sp9  { bottom: -8%; left: 20%;  width: 12px; height: 12px; animation-delay: 1.0s; animation-duration: 3.5s; }
+    .lsp.sp10 { bottom: 5%; left: 0%;   width: 10px; height: 10px; animation-delay: 1.8s; animation-duration: 3.0s; }
+    .lsp.sp11 { top: 40%; left: -6%;   width: 16px; height: 16px; animation-delay: 0.5s; animation-duration: 3.8s; }
+    .lsp.sp12 { top: 15%; left: -3%;   width: 8px;  height: 8px;  animation-delay: 2.5s; animation-duration: 2.7s; }
+    .lsp.sp13 { top: -5%; left: 50%;   width: 10px; height: 10px; animation-delay: 1.7s; animation-duration: 3.2s; }
+    .lsp.sp14 { bottom: 0%; right: 50%; width: 8px;  height: 8px;  animation-delay: 0.9s; animation-duration: 2.5s; }
+    .lsp.sp15 { top: 30%; right: 20%;  width: 6px;  height: 6px;  animation-delay: 2.3s; animation-duration: 3.7s; }
 
     .hero-badge {
       display: inline-flex;
@@ -1013,19 +1049,36 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <!-- Logo with animated sparkles -->
+        <!-- Recreated logo text with animated sparkle stars -->
         <div class="hero-logo-wrap">
-          <div class="hero-sparkles">
-            <svg class="sparkle s1" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
-            <svg class="sparkle s2" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
-            <svg class="sparkle s3" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
-            <svg class="sparkle s4" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
-            <svg class="sparkle s5" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
-            <svg class="sparkle s6" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
-            <svg class="sparkle s7" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
-            <svg class="sparkle s8" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+          <!-- Sparkle stars (matching original logo decorations) -->
+          <div class="logo-sparkles">
+            <!-- Large starburst top-left -->
+            <svg class="lsp burst" viewBox="0 0 60 60" fill="none"><path d="M30 0 L33 24 L30 28 L27 24Z" fill="currentColor" opacity="0.5"/><path d="M60 30 L36 33 L32 30 L36 27Z" fill="currentColor" opacity="0.5"/><path d="M30 60 L27 36 L30 32 L33 36Z" fill="currentColor" opacity="0.5"/><path d="M0 30 L24 27 L28 30 L24 33Z" fill="currentColor" opacity="0.5"/><path d="M50 10 L35 26 L34 24 L26 9Z" fill="currentColor" opacity="0.25"/><path d="M50 50 L34 35 L36 34 L51 26Z" fill="currentColor" opacity="0.25"/><path d="M10 50 L25 34 L26 36 L11 51Z" fill="currentColor" opacity="0.25"/><path d="M10 10 L26 25 L24 26 L9 11Z" fill="currentColor" opacity="0.25"/></svg>
+            <!-- 15 small 4-point sparkle stars -->
+            <svg class="lsp sm sp1"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp2"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp md sp3"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp4"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp md sp5"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp6"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp md sp7"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp8"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp9"  viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp md sp10" viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp11" viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp12" viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp md sp13" viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp14" viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
+            <svg class="lsp sm sp15" viewBox="0 0 20 20"><path d="M10 0l1.5 8.5L20 10l-8.5 1.5L10 20l-1.5-8.5L0 10l8.5-1.5z" fill="currentColor"/></svg>
           </div>
-          <img src="https://sparklemafia.com/wp-content/uploads/2019/06/cropped-Print_logo_white_background_small-02-04-copy.png" alt="SparkleMafia Professional Cleaning" class="hero-logo">
+          <!-- Logo text -->
+          <div class="logo-text">
+            <div class="logo-text-main">
+              <span class="logo-sparkle-word">Sparkle</span><span class="logo-mafia-word">MAFIA</span><span class="logo-llc">LLC</span>
+            </div>
+            <div class="logo-subtitle">Professional Cleaning</div>
+          </div>
         </div>
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
